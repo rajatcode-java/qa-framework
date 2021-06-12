@@ -4,6 +4,8 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.qa.logutil.LogStatus;
+import com.qa.logutil.LogUtil;
 import com.qa.report.ReportManager;
 
 public class TestNGListener implements ITestListener{
@@ -11,7 +13,7 @@ public class TestNGListener implements ITestListener{
 	public static String SuiteName = null; 
 	@Override
 	public void onTestStart(ITestResult result) {
-		
+		LogUtil.log(LogStatus.INFO,"TestNG");
 		reportManager.testStart(result);
 		
 	}
@@ -42,7 +44,7 @@ public class TestNGListener implements ITestListener{
 
 	@Override
 	public void onStart(ITestContext context) {
-		
+		SuiteName=context.getSuite().getName();
 		reportManager.SuiteName=context.getSuite().getName();
 	}
 
