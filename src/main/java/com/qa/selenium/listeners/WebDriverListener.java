@@ -1,4 +1,4 @@
-package com.Selenium.listeners;
+package com.qa.selenium.listeners;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

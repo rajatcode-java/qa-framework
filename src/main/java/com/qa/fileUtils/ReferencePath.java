@@ -1,4 +1,4 @@
-package com.fileUtils;
+package com.qa.fileUtils;
 
 public class ReferencePath
 {

@@ -1,7 +1,7 @@
-package com.Selenium.browser;
+package com.qa.selenium.browser;
 
-import com.Selenium.driver.Driver;
-import com.fileUtils.ReadConfig;
+import com.qa.selenium.driver.Driver;
+import com.qa.fileUtils.ReadConfig;
 
 public class Browser
 {
@@ -9,7 +9,7 @@ public class Browser
     private static String browserName = null;
     private final String defaultBrowser = "chrome";
     public Browser() throws Exception {
-        ReadConfig readConfig;
+        com.qa.fileUtils.ReadConfig readConfig;
         readConfig = new ReadConfig();
         baseURL=readConfig.getApplicationUrl();
         browserName=readConfig.getBrowser();
