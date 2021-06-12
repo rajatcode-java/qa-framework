@@ -16,7 +16,7 @@ public class SetBrowser {
     ReadConfig readConfig=new ReadConfig();
     WebDriverListener driverListener = new WebDriverListener();
     //what browsers are we interested in implementing
-    public void browserSet(String browser ) throws Exception {
+    public void browserSet(String browser ) {
         switch (browser) {        //check our browser
             case "Firefox": {
                 Driver.driver = new FirefoxDriver();
@@ -45,9 +45,7 @@ public class SetBrowser {
                 break;
             }
             //if our browser is not listed, throw an error
-            default: {
-                throw new Exception();
-            }
+           
             
         }
     }
