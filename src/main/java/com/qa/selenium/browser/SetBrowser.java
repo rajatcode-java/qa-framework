@@ -1,4 +1,4 @@
-package com.Selenium.browser;
+package com.qa.selenium.browser;
 
 
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,9 +7,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.Selenium.driver.Driver;
-import com.Selenium.listeners.WebDriverListener;
-import com.fileUtils.ReadConfig;
+import com.qa.selenium.driver.Driver;
+import com.qa.selenium.listeners.WebDriverListener;
+import com.qa.fileUtils.ReadConfig;
+
 
 public class SetBrowser {
     ReadConfig readConfig=new ReadConfig();

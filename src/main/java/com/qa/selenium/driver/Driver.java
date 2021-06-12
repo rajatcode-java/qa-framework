@@ -1,4 +1,4 @@
-package com.Selenium.driver;
+package com.qa.selenium.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;

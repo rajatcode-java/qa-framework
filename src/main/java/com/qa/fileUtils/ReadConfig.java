@@ -1,12 +1,13 @@
 
-package com.fileUtils;
+package com.qa.fileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
-import com.interfaces.IReader;
+import com.qa.interfaces.IReader;
+
 
 public class ReadConfig implements IReader
 {
