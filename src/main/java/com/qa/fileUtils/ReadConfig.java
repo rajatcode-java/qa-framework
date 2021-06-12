@@ -17,7 +17,7 @@ public class ReadConfig implements IReader
     {
         if(isDefaultProperties(filename))
         {
-            properties=getDataFromProperties(currentDirPath+"\\src\\test\\resources\\config.properties");
+            properties=getDataFromProperties(currentDirPath+"\\resources\\config.properties");
         }else
         {
             properties=getDataFromProperties(filename);

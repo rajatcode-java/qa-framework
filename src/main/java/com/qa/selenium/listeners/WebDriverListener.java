@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
+import com.qa.selenium.ScreenShotTaker;
+
 public class WebDriverListener extends AbstractWebDriverEventListener{
 	
 	//LogUtil log= new LogUtil();
@@ -82,7 +84,7 @@ public class WebDriverListener extends AbstractWebDriverEventListener{
 
 	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
-		//log.log(LogStatus.ERROR, "Exception Occured",throwable.fillInStackTrace());
+		ScreenShotTaker.takeScreenShot();
 	}
 	
 }

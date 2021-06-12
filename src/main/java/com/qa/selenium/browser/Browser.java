@@ -8,7 +8,7 @@ public class Browser
     private static String baseURL;
     private static String browserName = null;
     private final String defaultBrowser = "chrome";
-    public Browser() throws Exception {
+    public Browser() {
         com.qa.fileUtils.ReadConfig readConfig;
         readConfig = new ReadConfig();
         baseURL=readConfig.getApplicationUrl();

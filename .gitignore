@@ -3,3 +3,4 @@
 !src/**/build/
 .settings
 bin
+test-output/
