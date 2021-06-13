@@ -25,5 +25,6 @@ dependencies {
    compile (group: 'com.aventstack', name: 'extentreports', version: '4.1.6')
    compile (group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3')
    compile (group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30')
+   compile (group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.5')
 }
 

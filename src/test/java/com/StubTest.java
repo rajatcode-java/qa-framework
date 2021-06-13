@@ -16,7 +16,7 @@ public class StubTest {
 	@Test
 	public void stubtest(){
 		browser.navigateTo();
-		int i=999999999;
+		int i=9;
 		while(i-->0)
 		LogUtil.log(LogStatus.INFO,"HIIIIIIII");
 		WebElement w = Driver.driver.findElement(By.id("l"));
