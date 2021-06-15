@@ -11,6 +11,7 @@ import com.qa.report.ReportManager;
 public class TestNGListener implements ITestListener{
 	ReportManager reportManager = new ReportManager();
 	public static String SuiteName = null; 
+	public static String ClassName = null; 
 	@Override
 	public void onTestStart(ITestResult result) {
 		LogUtil.log(LogStatus.INFO,"TestNG");
@@ -46,6 +47,7 @@ public class TestNGListener implements ITestListener{
 	public void onStart(ITestContext context) {
 		SuiteName=context.getSuite().getName();
 		reportManager.SuiteName=context.getSuite().getName();
+		ClassName = context.getAllTestMethods()[0].getInstance().getClass().getSimpleName();
 	}
 
 	@Override

@@ -2,13 +2,12 @@ package com.qa.logutil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 import com.qa.selenium.listeners.TestNGListener;
 
 
 public class LogUtil {
-	static{System.setProperty("logback.configurationFile", System.getProperty("user.dir")+"//logback.xml");}
-	static{System.setProperty("LOG_NAME", TestNGListener.SuiteName);}
 	static Logger log = null;
 	
 	public LogUtil(){
