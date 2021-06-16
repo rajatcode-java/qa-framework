@@ -27,10 +27,10 @@ public class ScreenShotTaker{
 	}
 	
 	public static void takeScreenShot(){
-		String callerClassName = Thread.currentThread().getStackTrace()[2].getClassName();
+		String callerClassName = Thread.currentThread().getStackTrace()[2].getClass().getSimpleName();
 		File srcFile=((TakesScreenshot)Driver.driver).getScreenshotAs(OutputType.FILE);
 		try {
-			String destFileName = filePath+"//"+callerClassName+"_"+simpleDateFormat;
+			String destFileName = filePath+"//"+callerClassName+"_"+simpleDateFormat+".png";
 			FileUtils.copyFile(srcFile, new File(destFileName));
 		} catch (IOException e) {
 			LogUtil.log(LogStatus.WARN,"Exception Occured while taking screenshot!!",e);
