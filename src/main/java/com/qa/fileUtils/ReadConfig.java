@@ -70,5 +70,9 @@ public class ReadConfig implements IReader
     }
     public String getReportConfigPath() {
         return currentDirPath+properties.getProperty("reportConfigPath");
-}
+    }
+    
+    public String getDataFilePath() {
+        return currentDirPath+properties.getProperty("dataFilePath");
+    }
 }

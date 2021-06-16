@@ -7,21 +7,22 @@ import java.util.Properties;
 
 import org.testng.annotations.DataProvider;
 
+import com.qa.fileUtils.ReadConfig;
 import com.qa.logutil.LogStatus;
 import com.qa.logutil.LogUtil;
-import com.qa.selenium.listeners.TestNGListener;
 
 public class DataProviderClass {
-
+	ReadConfig readConfig = new ReadConfig();
+    String dataFilePath=readConfig.getDataFilePath();
 	@DataProvider(name = "dataProvider")
-    public static Object[][] dataProviderMethod() 
-    {
-		String dataFilePath = System.getProperty("user.dir")+("//src//test//resources//data//")+TestNGListener.ClassName+".proerties";
+    public Object[][] dataProviderMethod(Class<?> className) throws CustomException {
+		String dataFilePath = this.dataFilePath+"//"+className.getSimpleName()+".properties";
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileInputStream(dataFilePath));
 		} catch (Exception e) {
-			LogUtil.log(LogStatus.ERROR, "Data File for test class "+TestNGListener.ClassName+" Not Found!!");
+			LogUtil.log(LogStatus.ERROR, "Data File for test class "+className+".properties Not Found!!");
+			throw new CustomException("Data File for test class "+className+".properties Not Found!!");
 		}
 		HashMap<String, String> dataMap = new HashMap<String,String>();
 		

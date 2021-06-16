@@ -1,4 +1,4 @@
-package com;
+package com.tests;
 
 import java.util.HashMap;
 import org.openqa.selenium.By;
@@ -11,7 +11,7 @@ import com.qa.selenium.DataProviderClass;
 import com.qa.selenium.browser.Browser;
 import com.qa.selenium.driver.Driver;
 
-public class StubTest {
+public class Demo {
 
 	Browser browser = new Browser();
 	
@@ -21,7 +21,7 @@ public class StubTest {
 		browser.navigateTo();
 		int i=9;
 		while(i-->0)
-		LogUtil.log(LogStatus.ERROR,"HIIIIIIII");
+		LogUtil.log(LogStatus.INFO,"DEMO1");
 		WebElement w = Driver.driver.findElement(By.id("l"));
 	}
 	@Test(dataProvider ="dataProvider",dataProviderClass =DataProviderClass.class)
@@ -30,7 +30,7 @@ public class StubTest {
 		browser.navigateTo();
 		int i=9;
 		while(i-->0)
-		LogUtil.log(LogStatus.INFO,"HIIIIIIII");
+		LogUtil.log(LogStatus.INFO,"DEMO2");
 		WebElement w = Driver.driver.findElement(By.id("l"));
 	}
 	
