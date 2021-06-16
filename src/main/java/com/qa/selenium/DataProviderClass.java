@@ -21,8 +21,7 @@ public class DataProviderClass {
 		try {
 			properties.load(new FileInputStream(dataFilePath));
 		} catch (Exception e) {
-			LogUtil.log(LogStatus.ERROR, "Data File for test class "+className+".properties Not Found!!");
-			throw new CustomException("Data File for test class "+className+".properties Not Found!!");
+			throw new CustomException("Data File for test class "+className+".properties Not Found!!",e);
 		}
 		HashMap<String, String> dataMap = new HashMap<String,String>();
 		
