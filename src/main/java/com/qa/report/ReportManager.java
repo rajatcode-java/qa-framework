@@ -9,6 +9,8 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.selenium.ScreenShotTaker;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,6 +47,15 @@ public class ReportManager{
 		extentSparkReporter = new ExtentSparkReporter(reportName);
 		extentSparkReporter.loadConfig(reportConfigFilePath);
 		extentReports.attachReporter(extentSparkReporter);
+		try {
+			extentReports.setSystemInfo("User", System.getProperty("user.name"));
+			extentReports.setSystemInfo("HostName", InetAddress.getLocalHost().getHostName());
+			extentReports.setSystemInfo("OS", System.getProperty("os.name"));
+			extentReports.setSystemInfo("Executed Suite Name",SuiteName );
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		extentReports.flush();
 	}
 	

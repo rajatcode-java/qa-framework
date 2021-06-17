@@ -10,30 +10,32 @@ import com.qa.report.ReportManager;
 
 public class TestNGListener implements ITestListener{
 	ReportManager reportManager=new ReportManager();
-	public static String SuiteName = null; 
+	public static String SuiteName = null;
+	
 	@Override
 	public void onTestStart(ITestResult result) {
-		LogUtil.log(LogStatus.INFO,"TestNG");
+		LogUtil.log(LogStatus.INFO,"Executing test method: "+result.getMethod().getQualifiedName());
 		reportManager.testStart(result);
 		
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		
+		LogUtil.log(LogStatus.INFO, "Test Passed: "+result.getMethod().getQualifiedName());
 		reportManager.testSuccess(result);
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		
+		LogUtil.log(LogStatus.ERROR, "Test Failed: "+result.getMethod().getQualifiedName());
+		LogUtil.log(LogStatus.ERROR, "Error Trace: "+result.getThrowable());
 		reportManager.testFailure(result);
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		reportManager.testSkipped(result);
-		
+		LogUtil.log(LogStatus.WARN, "Test Skipped: "+result.getMethod().getQualifiedName());
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class TestNGListener implements ITestListener{
 
 	@Override
 	public void onStart(ITestContext context) {
+		LogUtil.log(LogStatus.INFO, "Starting execution of test suite: "+context.getSuite().getName());
 		SuiteName=context.getSuite().getName();
 		reportManager.SuiteName=context.getSuite().getName();
 		reportManager.onStart(context);
@@ -51,7 +54,7 @@ public class TestNGListener implements ITestListener{
 
 	@Override
 	public void onFinish(ITestContext context) {
-		
+		LogUtil.log(LogStatus.INFO, "Suite execution completed: "+context.getSuite().getName());
 		reportManager.writeReport();
 	}
 
