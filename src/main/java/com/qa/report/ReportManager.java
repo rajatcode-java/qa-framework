@@ -41,7 +41,7 @@ public class ReportManager{
 	 *void 
 	 */
 	public void writeReport() {
-		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("dd_MM_hhmmss").format(new Date())+".html";
+		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
 		extentSparkReporter = new ExtentSparkReporter(reportName);
 		extentSparkReporter.loadConfig(reportConfigFilePath);
 		extentReports.attachReporter(extentSparkReporter);
