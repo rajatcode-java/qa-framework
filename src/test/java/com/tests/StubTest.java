@@ -21,8 +21,7 @@ public class StubTest {
 		browser.navigateTo();
 		int i=9;
 		while(i-->0)
-		LogUtil.log(LogStatus.ERROR,"HIIIIIIII");
-		WebElement w = Driver.driver.findElement(By.id("l"));
+		LogUtil.log(LogStatus.INFO,"HIIIIIIII");
 	}
 	@Test(dataProvider ="dataProvider",dataProviderClass =DataProviderClass.class)
 	public void stubtest1(HashMap<String, String> map){
@@ -30,8 +29,7 @@ public class StubTest {
 		browser.navigateTo();
 		int i=9;
 		while(i-->0)
-		LogUtil.log(LogStatus.WARN,"HIIIIIIII");
-		WebElement w = Driver.driver.findElement(By.id("l"));
+		LogUtil.log(LogStatus.INFO,"HIIIIIIII");
 	}
 	
 }
