@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.MediaEntityModelProvider;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.selenium.ScreenShotTaker;
 
@@ -11,7 +12,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.testng.ITestContext;
@@ -20,14 +20,13 @@ import org.testng.ITestResult;
 
 public class ReportManager{
 	private ExtentReports extentReports;
-	private ExtentTest extentTest;
-	private Map<String, ExtentTest> testMap = new HashMap<String, ExtentTest>();
-	public String SuiteName=null;
+	private static Map<String, ExtentTest> testMap = new HashMap<String, ExtentTest>();
+	public String SuiteName;
 	private String reportName=null;
 	private String reportConfigFilePath = System.getProperty("user.dir")+"\\extent-config.xml";
 	ExtentSparkReporter extentSparkReporter;
 	String log;
-	
+	static String testName = null;
 	/**
 	 * initialize ExtentSparkReporter
 	 * load extent-config.xml
@@ -42,7 +41,7 @@ public class ReportManager{
 	 *void 
 	 */
 	public void writeReport() {
-		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("dd_MM").format(new Date())+".html";
+		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
 		extentSparkReporter = new ExtentSparkReporter(reportName);
 		extentSparkReporter.loadConfig(reportConfigFilePath);
 		extentReports.attachReporter(extentSparkReporter);
@@ -68,45 +67,37 @@ public class ReportManager{
 	 *void 
 	 *@param log
 	 */
-	public void log(String log){
-		this.log=log;
+	public ExtentTest getExtentTestNode(){
+		if(testName!=null)
+			return testMap.get(testName);
+		return null;
 	}
 	
 	public void testStart(ITestResult result){
-		String testName = result.getInstanceName();
+		testName = result.getMethod().getQualifiedName();
 		testMap.putIfAbsent(testName,extentReports.createTest(testName));
 	}
 	
 	public void testSuccess(ITestResult result) {
-		String featureName = result.getInstanceName();
+		String featureName = result.getMethod().getQualifiedName();
 		testMap.get(featureName).pass(result.getTestName());
+		testMap.remove(featureName);
 		
 	}
 
 	public void testFailure(ITestResult result) {
-		String featureName = result.getInstanceName();
+		String featureName =result.getMethod().getQualifiedName();
 		testMap.get(featureName).fail(result.getThrowable().getMessage(),takeScreenShot());
-		
+		testMap.remove(featureName);
 	}
 
 	public void testSkipped(ITestResult result) {
-		String featureName = result.getInstanceName();
-		testMap.get(featureName).skip("Test Skipped");
-		
+		String featureName = result.getMethod().getQualifiedName();
+		ExtentTest e = extentReports.createTest(featureName);
+		e.skip("Test Skipped");
 	}
 
-//
-//	@Override
-//	public void onStart(ITestContext context) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void onFinish(ITestContext context) {
-//		String featureName = context.
-//		scenario = features.get(featureName).createNode(event.getTestCase().getName());
-//		scenario.log((Status)scenario.getStatus(),log,base64ScreenCapture());
-//		
-//	}
+	public void onStart(ITestContext context) {
+	}
+
 }

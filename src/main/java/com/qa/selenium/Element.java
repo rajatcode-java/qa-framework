@@ -2,12 +2,7 @@ package com.qa.selenium;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.safari.SafariDriver;
-
 import com.qa.selenium.driver.Driver;
 
 import java.io.File;

@@ -1,4 +1,4 @@
-package com;
+package com.tests;
 
 import java.util.HashMap;
 import org.openqa.selenium.By;
@@ -30,7 +30,7 @@ public class StubTest {
 		browser.navigateTo();
 		int i=9;
 		while(i-->0)
-		LogUtil.log(LogStatus.INFO,"HIIIIIIII");
+		LogUtil.log(LogStatus.WARN,"HIIIIIIII");
 		WebElement w = Driver.driver.findElement(By.id("l"));
 	}
 	

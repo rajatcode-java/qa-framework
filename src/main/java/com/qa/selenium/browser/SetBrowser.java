@@ -22,7 +22,8 @@ public class SetBrowser {
     WebDriverListener driverListener = new WebDriverListener();
     static{System.setProperty("logback.configurationFile", System.getProperty("user.dir")+"//logback.xml");}
     //what browsers are we interested in implementing
-    public void browserSet(String browser ) {
+    @SuppressWarnings("unused")
+	public void browserSet(String browser ) {
         switch (browser) {        //check our browser
             case "Firefox": {
             	FirefoxOptions firefoxOptions = new FirefoxOptions();

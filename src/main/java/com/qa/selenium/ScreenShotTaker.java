@@ -8,6 +8,8 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
+import com.qa.logutil.LogStatus;
+import com.qa.logutil.LogUtil;
 import com.qa.selenium.driver.Driver;
 
 
@@ -15,7 +17,7 @@ public class ScreenShotTaker{
 	private static String filePath = System.getProperty("user.dir")+"//screenshot";
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY_mm_dd_HHmmss");
 	
-	public static String takeBase64ScreenShot(){
+	public String takeBase64ScreenShot(){
 		if(Driver.driver==null){
 			return null;
 		}
@@ -25,14 +27,13 @@ public class ScreenShotTaker{
 	}
 	
 	public static void takeScreenShot(){
-		String callerClassName = Thread.currentThread().getStackTrace()[2].getClassName();
+		String callerClassName = Thread.currentThread().getStackTrace()[2].getClass().getSimpleName();
 		File srcFile=((TakesScreenshot)Driver.driver).getScreenshotAs(OutputType.FILE);
 		try {
-			String destFileName = filePath+"//"+callerClassName+"_"+simpleDateFormat;
+			String destFileName = filePath+"//"+callerClassName+"_"+simpleDateFormat+".png";
 			FileUtils.copyFile(srcFile, new File(destFileName));
 		} catch (IOException e) {
-			System.out.println("Exception while taking screenshot");
-			e.printStackTrace();
+			LogUtil.log(LogStatus.WARN,"Exception Occured while taking screenshot!!",e);
 		}
 	}
 }
