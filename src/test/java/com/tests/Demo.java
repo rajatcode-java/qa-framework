@@ -22,7 +22,7 @@ public class Demo {
 		int i=9;
 		while(i-->0)
 		LogUtil.log(LogStatus.INFO,"DEMO1");
-		WebElement w = Driver.driver.findElement(By.id("l"));
+		WebElement w = Browser.getBrowser().findElement(By.id("l"));
 	}
 	@Test(dataProvider ="dataProvider",dataProviderClass =DataProviderClass.class)
 	public void stubtest1(HashMap<String, String> map){
@@ -31,7 +31,7 @@ public class Demo {
 		int i=9;
 		while(i-->0)
 		LogUtil.log(LogStatus.INFO,"DEMO2");
-		WebElement w = Driver.driver.findElement(By.id("l"));
+		WebElement w = Browser.getBrowser().findElement(By.id("l"));
 	}
 	
 }

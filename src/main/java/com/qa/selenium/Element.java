@@ -3,6 +3,9 @@ package com.qa.selenium;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import com.qa.selenium.browser.Browser;
 import com.qa.selenium.driver.Driver;
 
 import java.io.File;
@@ -12,6 +15,7 @@ import static junit.framework.Assert.assertTrue;
 
 public class Element
 {
+	EventFiringWebDriver driver = Browser.getBrowser();
     //what locator actions are available in webdriver
     public enum Locators		{ xpath, id, name, classname, paritallinktext, linktext, tagname };
 
@@ -20,7 +24,7 @@ public class Element
 
     //a method to allow retrieving our driver instance
     public WebDriver getDriver() {
-        return Driver.driver;
+        return Browser.getBrowser();
     }
     //waiting functionality
 
@@ -70,7 +74,7 @@ public class Element
         click( getWebElement( locator, element ) );
     }
     public void click( WebElement element ) {
-        Actions selAction = new Actions(Driver.driver);
+        Actions selAction = new Actions(driver);
         selAction.click( element ).perform();
     }
 
@@ -79,7 +83,7 @@ public class Element
         hover( getWebElement( locator, element ) );
     }
     public void hover( WebElement element ) throws Exception {
-        Actions selAction = new Actions(Driver.driver);
+        Actions selAction = new Actions(driver);
         selAction.moveToElement( element ).perform();
     }
 
@@ -88,7 +92,7 @@ public class Element
         type( getWebElement( locator, element ), text );
     }
     public void type( WebElement element, String text ) {
-        Actions selAction = new Actions(Driver.driver);
+        Actions selAction = new Actions(driver);
         selAction.sendKeys( element, text ).perform();
     }
 
@@ -107,7 +111,7 @@ public class Element
             case tagname:		{ byElement = By.tagName(element); 		break; }
             default:		{ throw new Exception(); }
         }
-        WebElement query =Driver.driver.findElement( byElement );	//grab our element based on the locator
+        WebElement query = driver.findElement( byElement );	//grab our element based on the locator
         return query;	//return our query
     }
 
@@ -117,7 +121,7 @@ public class Element
         action = action.replaceAll("[^a-zA-Z0-9]", "");
 
         //take a screenshot
-        File scrFile = ((TakesScreenshot)Driver.driver).getScreenshotAs(OutputType.FILE);
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         // Now you can do whatever you need to do with it, for example copy somewhere
         FileUtils.copyFile(scrFile, new File("screenshot/" + System.currentTimeMillis() + action + ".png"));
     }

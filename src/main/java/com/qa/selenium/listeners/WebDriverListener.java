@@ -5,19 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 
+import com.qa.logutil.LogStatus;
+import com.qa.logutil.LogUtil;
 import com.qa.selenium.ScreenShotTaker;
 
 public class WebDriverListener extends AbstractWebDriverEventListener{
 	
-	//LogUtil log= new LogUtil();
+	
 	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		//log.log(LogStatus.INFO,"Navigating to "+url);
+		LogUtil.log(LogStatus.INFO,"Navigating to "+url);
 	}
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
-		//log.log(LogStatus.INFO,"Navigated to "+driver.getCurrentUrl()+" Browser title:"+driver.getTitle());
+		LogUtil.log(LogStatus.INFO,"Navigated to "+driver.getCurrentUrl()+" Browser title:"+driver.getTitle());
 		
 	}
 
@@ -84,6 +86,7 @@ public class WebDriverListener extends AbstractWebDriverEventListener{
 
 	@Override
 	public void onException(Throwable throwable, WebDriver driver) {
+		LogUtil.log(LogStatus.ERROR, "Exception Occured!!", throwable);
 		ScreenShotTaker.takeScreenShot();
 	}
 	

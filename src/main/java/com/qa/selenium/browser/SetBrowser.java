@@ -17,7 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import com.qa.fileUtils.ReadConfig;
 
 
-public class SetBrowser {
+public class SetBrowser extends Driver{
     ReadConfig readConfig=new ReadConfig();
     WebDriverListener driverListener = new WebDriverListener();
     static{System.setProperty("logback.configurationFile", System.getProperty("user.dir")+"//logback.xml");}
@@ -28,9 +28,9 @@ public class SetBrowser {
             case "Firefox": {
             	FirefoxOptions firefoxOptions = new FirefoxOptions();
             	WebDriverManager.firefoxdriver().setup();
-                Driver.driver = new FirefoxDriver();
-                Driver.e_driver=new EventFiringWebDriver(Driver.driver);
-                Driver.e_driver.register(driverListener);
+                driver = new FirefoxDriver();
+                e_driver=new EventFiringWebDriver(Driver.driver);
+                e_driver.register(driverListener);
                 break;
             }
             case "Chrome": {
@@ -47,23 +47,23 @@ public class SetBrowser {
                 options.addArguments("--headless");
 
                 options.setBinary(WebDriverManager.chromedriver().getBinaryPath());
-                Driver.driver = new ChromeDriver();
-                Driver.e_driver=new EventFiringWebDriver(Driver.driver);
-                Driver.e_driver.register(driverListener);
-                Driver.driver.manage().window().maximize();
+                driver = new ChromeDriver();
+                e_driver=new EventFiringWebDriver(Driver.driver);
+                e_driver.register(driverListener);
+                e_driver.manage().window().maximize();
                 break;
             }
             case "InternetExplorer": {
             	WebDriverManager.iedriver().setup();
-                Driver.driver = new InternetExplorerDriver();
-                Driver.e_driver=new EventFiringWebDriver(Driver.driver);
-                Driver.e_driver.register(driverListener);
+                driver = new InternetExplorerDriver();
+                e_driver=new EventFiringWebDriver(Driver.driver);
+                e_driver.register(driverListener);
                 break;
             }
             case "Safari": {
-                Driver.driver = new SafariDriver();
-                Driver.e_driver=new EventFiringWebDriver(Driver.driver);
-                Driver.e_driver.register(driverListener);
+                driver = new SafariDriver();
+                e_driver=new EventFiringWebDriver(Driver.driver);
+                e_driver.register(driverListener);
                 break;
             }
            

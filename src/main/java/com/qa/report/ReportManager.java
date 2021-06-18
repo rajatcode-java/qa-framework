@@ -38,16 +38,16 @@ public class ReportManager{
 	public ReportManager(){
 		if(extentSparkReporter==null && extentReports==null){
 			extentReports=new ExtentReports();
-			reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
-			extentSparkReporter = new ExtentSparkReporter(reportName);
-			extentSparkReporter.loadXMLConfig(reportConfigFilePath);
-			extentReports.attachReporter(extentSparkReporter);
 		}
 	}	
 	/**
 	 *void 
 	 */
 	public void writeReport() {
+		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
+		extentSparkReporter = new ExtentSparkReporter(reportName);
+		extentSparkReporter.loadXMLConfig(reportConfigFilePath);
+		extentReports.attachReporter(extentSparkReporter);
 		try {
 			extentReports.setSystemInfo("User", System.getProperty("user.name"));
 			extentReports.setSystemInfo("HostName", InetAddress.getLocalHost().getHostName());

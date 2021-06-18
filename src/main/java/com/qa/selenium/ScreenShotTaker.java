@@ -10,25 +10,26 @@ import org.openqa.selenium.TakesScreenshot;
 
 import com.qa.logutil.LogStatus;
 import com.qa.logutil.LogUtil;
+import com.qa.selenium.browser.Browser;
 import com.qa.selenium.driver.Driver;
 
 
-public class ScreenShotTaker{
+public class ScreenShotTaker extends Driver{
 	private static String filePath = System.getProperty("user.dir")+"//screenshot";
 	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY_mm_dd_HHmmss");
 	
 	public String takeBase64ScreenShot(){
-		if(Driver.driver==null){
+		if(Browser.getBrowser()==null){
 			return null;
 		}
 		else{
-			return ((TakesScreenshot)Driver.driver).getScreenshotAs(OutputType.BASE64);
+			return ((TakesScreenshot)Browser.getBrowser()).getScreenshotAs(OutputType.BASE64);
 		}
 	}
 	
 	public static void takeScreenShot(){
 		String callerClassName = Thread.currentThread().getStackTrace()[2].getClass().getSimpleName();
-		File srcFile=((TakesScreenshot)Driver.driver).getScreenshotAs(OutputType.FILE);
+		File srcFile=((TakesScreenshot)Browser.getBrowser()).getScreenshotAs(OutputType.FILE);
 		try {
 			String destFileName = filePath+"//"+callerClassName+"_"+simpleDateFormat+".png";
 			FileUtils.copyFile(srcFile, new File(destFileName));
