@@ -8,6 +8,7 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.qa.selenium.ScreenShotTaker;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -21,12 +22,12 @@ import org.testng.ITestResult;
 
 
 public class ReportManager{
-	private ExtentReports extentReports;
+	private static ExtentReports extentReports=null;
 	private static Map<String, ExtentTest> testMap = new HashMap<String, ExtentTest>();
 	public String SuiteName;
 	private String reportName=null;
 	private String reportConfigFilePath = System.getProperty("user.dir")+"\\extent-config.xml";
-	ExtentSparkReporter extentSparkReporter;
+	static ExtentSparkReporter extentSparkReporter;
 	String log;
 	static String testName = null;
 	/**
@@ -37,16 +38,16 @@ public class ReportManager{
 	public ReportManager(){
 		if(extentSparkReporter==null && extentReports==null){
 			extentReports=new ExtentReports();
+			reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
+			extentSparkReporter = new ExtentSparkReporter(reportName);
+			extentSparkReporter.loadXMLConfig(reportConfigFilePath);
+			extentReports.attachReporter(extentSparkReporter);
 		}
 	}	
 	/**
 	 *void 
 	 */
 	public void writeReport() {
-		reportName=System.getProperty("user.dir")+"\\HtmlReport\\"+SuiteName+"_"+new SimpleDateFormat("ddMMYY_hh-mm-ss").format(new Date())+".html";
-		extentSparkReporter = new ExtentSparkReporter(reportName);
-		extentSparkReporter.loadConfig(reportConfigFilePath);
-		extentReports.attachReporter(extentSparkReporter);
 		try {
 			extentReports.setSystemInfo("User", System.getProperty("user.name"));
 			extentReports.setSystemInfo("HostName", InetAddress.getLocalHost().getHostName());
