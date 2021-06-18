@@ -3,6 +3,7 @@ package com.tests;
 import java.util.HashMap;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.qa.logutil.LogStatus;
@@ -13,7 +14,12 @@ import com.qa.selenium.driver.Driver;
 
 public class StubTest {
 
-	Browser browser = new Browser();
+	Browser browser;
+	
+	@BeforeClass
+	public void setup(){
+		browser = new Browser();
+	}
 	
 	@Test(dataProvider ="dataProvider",dataProviderClass =DataProviderClass.class)
 	public void stubtest(HashMap<String, String> map){

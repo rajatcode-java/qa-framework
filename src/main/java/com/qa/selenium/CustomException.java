@@ -25,7 +25,6 @@ public class CustomException extends RuntimeException {
 	
 	@Override
 	public String getMessage(){
-		ScreenShotTaker.takeScreenShot();
 		return message;
 	}
 }
